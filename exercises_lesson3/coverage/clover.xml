@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1725503798883" clover="3.2.0">
+  <project timestamp="1725503798883" name="All files">
+    <metrics statements="9" coveredstatements="6" conditionals="6" coveredconditionals="4" methods="2" coveredmethods="1" elements="17" coveredelements="11" complexity="0" loc="9" ncloc="9" packages="1" files="2" classes="2"/>
+    <file name="checkNegative.js" path="/Users/pamelamardones/exercises_clg/exercises_lesson3/checkNegative.js">
+      <metrics statements="5" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="3" count="0" type="stmt"/>
+      <line num="5" count="0" type="stmt"/>
+      <line num="7" count="1" type="stmt"/>
+    </file>
+    <file name="sum.js" path="/Users/pamelamardones/exercises_clg/exercises_lesson3/sum.js">
+      <metrics statements="4" coveredstatements="4" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+      <line num="2" count="2" type="cond" truecount="4" falsecount="0"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="8" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
