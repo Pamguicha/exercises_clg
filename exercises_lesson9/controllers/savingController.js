@@ -1,27 +1,12 @@
 const express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
-const Expense = mongoose.model('Expense');
+const Saving = mongoose.model('Saving');
 
 router.get('/', (req, res) => {
 //homepage
+console.log('Welcome to my home page!');
 });
-
-
-/* older pattern not longer supported by mongodb
-router.get('/list', (req, res) => {
-  Expense.find((err, docs) => {
-    if (!err) {
-      res.send(docs)
-    } else {
-      console.logs('Error in retrieval:' + err); 
-    }
-    })
-  })
-
-
-*/
-
 
 router.get('/list', async (req, res) => {
   try {
@@ -31,30 +16,6 @@ router.get('/list', async (req, res) => {
     console.log('Error in retrieval: ' + err);
   }
 });
-
-
-//older pattern not longer supported by mongodb
-/*router.get('/:id' , (req, res) => {
-  Expense.findById(req.params.id, (err, doc) => {
-    if (!err) {
-      res.send(doc)
-    }
-  })
-})
-  */
-
-router.get('/:id', async (req, res, next) => {
-  try {
-    const doc = await Expense.findById(req.params.id); 
-    if(!doc) {
-      return res.status(404).send('Document not found');
-    }
-      res.send(doc);
-    } catch (err) {
-      console.log('error in retrieval: '  + err );
-    }
-  });
-  
 
 //function to insert or update values to the mongo database
 
@@ -70,32 +31,34 @@ router.post('/' , (req, res) => {
 const insertRecord = async (req, res) => {
   try{
 
-  var newExpense = new Expense ( {
-  expense: req.body.expense,
+  var newSaving = new Saving ( {
+  savings: req.body.savings,
   amount: req.body.amount,
   date: req.body.date,
+  owner: req.body.owner,
   notes:  req.body.notes
   });
 
-  const savedExpense = await newExpense.save();
-  res.status(200).json(savedExpense);
+  const savedSaving = await newSaving.save();
+  res.status(200).json(savedSaving);
 } catch(error) {
 res.status(500).json({message: error.message});
 }
 };
 
+
 async function updateRecord(req, res){
   try{
-    const updatedExpense = await Expense.findOneAndUpdate(
+    const updatedSaving = await Saving.findOneAndUpdate(
     {_id: req.body._id},
     req.body,
     {new: true},
     );
-      if(updatedExpense) {
-        res.redirect('expense/list');
+      if(updatedSaving) {
+        res.redirect('saving/list');
       } else {
         console.log('Error during update');
-        res.status(404).send('Expense not found');
+        res.status(404).send('Saving not found');
       }
     } catch (err) {
       console.log('Error during update' + err);
@@ -105,8 +68,8 @@ async function updateRecord(req, res){
 
 router.delete('/delete/:id', async (req, res) => {
   try {
-    await Expense.findOneAndDelete({ _id: req.params.id });
-    res.redirect('expense/list');
+    await Saving.findOneAndDelete({ _id: req.params.id });
+    res.redirect('saving/list');
   } catch (err) {
     console.log('Error during deletion: ' + err);
     res.status(500).send('Error occurred during deletion');

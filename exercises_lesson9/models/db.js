@@ -9,3 +9,4 @@ mongoose.connect('mongodb://localhost:27017/MyExpenseTracker')
   });
 
 require('./expense.model');
+require('./saving.model');
