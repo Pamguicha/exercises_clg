@@ -1,8 +1,6 @@
 const express = require('express');
 require('./models/db');
 const bodyparser = require('body-parser');
-require('dotenv').config();
-const myIpAddress = process.env.MY_IP_ADDRESS;
 const expenseController = require('./controllers/expenseController');
 const cors = require('cors');
 
@@ -20,4 +18,4 @@ app.get('/', (req, res) => {
 
 app.use("/expense", expenseController);
 
-app.listen(3000, myIpAddress, () => console.log('Server running at http://127.0.0.1:3000'));
+app.listen(3000, '127.0.0.1', () => console.log('Server running at http://127.0.0.1:3000'));

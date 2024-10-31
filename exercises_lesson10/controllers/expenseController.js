@@ -88,9 +88,12 @@ const updateRecord = async (req, res) => {
 // Delete an expense by ID
 router.delete('/delete/:id', async (req, res) => {
   try {
-    await Expense.findOneAndDelete({ _id: req.params.id });
-    console.log(`Deleted expense with ID: ${req.params.id}`);
-    res.redirect('/expense/list');
+    const deletedExpense = await Expense.findOneAndDelete({ _id: req.params.id });
+    if(!deletedExpense) {
+      return res.status(404).json({message: 'Expense not found'});
+    }
+   console.log(`Deleted expense with id: ${req.params.id}`);
+   res.status(200).json({message: 'Expense deleted successfully', id: req.params.id });
   } catch (err) {
     console.log('Error during deletion: ' + err);
     res.status(500).send('Error occurred during deletion');

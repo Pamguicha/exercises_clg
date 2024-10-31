@@ -2,8 +2,8 @@
 
 const mongoose = require('mongoose');
 
-var savingSchema = new mongoose.Schema({
-    savings: {
+var expenseSchema = new mongoose.Schema({
+    expense: {
       type: String,
       required: 'This field is required'
     },
@@ -15,11 +15,7 @@ var savingSchema = new mongoose.Schema({
       type: String,
       required: 'This field is required'
     },
-     owner: {
-      type: String,
-      required: 'This field is required'
-    },
-    note: {
+     notes: {
       type: String,
       required: 'This field is required'
     }
@@ -27,19 +23,4 @@ var savingSchema = new mongoose.Schema({
     versionKey: false
   });
 
-mongoose.model('Saving', savingSchema);
-
-/*
-
-savings
-"rigging salary"
-amount
-"1000"
-date
-"11/10/24"
-owner
-"Sean"
-note
-"weekly saving full-time job october"
-
-*/
+mongoose.model('Expense', expenseSchema);
